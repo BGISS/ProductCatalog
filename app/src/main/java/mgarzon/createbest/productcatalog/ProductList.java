@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.application.R;
+
 import java.util.List;
 
 public class ProductList extends ArrayAdapter<Product> {

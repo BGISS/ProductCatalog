@@ -1,28 +1,31 @@
 package mgarzon.createbest.productcatalog;
 
 
-import android.support.test.filters.LargeTest;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.anything;
 
 
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
+
+import com.example.application.R;
+
+
 @RunWith(AndroidJUnit4.class)
-    @LargeTest
-    public class FirstTest {
+public class FirstTest {
 
         private String mStringToBetyped;
         private String mNumberToBetyped;
@@ -48,8 +51,8 @@ import static org.hamcrest.CoreMatchers.anything;
             onView(withId(R.id.addButton)).perform(click());
 
             // Check that the text was changed.
-            //onView(withId(R.id.listViewProducts))
-              //      .check(matches(withText(mStringToBetyped)));
+            onView(withId(R.id.listViewProducts))
+                    .check(matches(withText(mStringToBetyped)));
             onData(anything()).inAdapterView(withId(R.id.listViewProducts)).atPosition(0).onChildView(withId(R.id.textViewName)).check(matches(withText("Hello")));
 
         }
